@@ -9,4 +9,3 @@ describe("JSX", () => {
     expect(createElementSpy).toHaveBeenCalledWith("h1", null, "Hello, JSX!");
   });
 });
-
