@@ -2,12 +2,10 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-// import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import CarouselButton from "../carousel-button";
+import "./jestSetup";
 
-// configure({ adapter: new Adapter() });
-
-describe("CarouseButton", () => {
+describe("CarouselButton", () => {
   const text = "Button text";
   let wrapper;
 
