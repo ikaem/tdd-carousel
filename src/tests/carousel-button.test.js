@@ -1,11 +1,11 @@
 // src\tests\carousel-button.test.js
 
 import React from "react";
-import { configure, shallow } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { shallow } from "enzyme";
+// import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import CarouselButton from "../carousel-button";
 
-configure({ adapter: new Adapter() });
+// configure({ adapter: new Adapter() });
 
 describe("CarouseButton", () => {
   const text = "Button text";
