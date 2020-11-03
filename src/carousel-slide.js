@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CarouseSlide = ({ imgUrl, description, attribution, ...rest }) => {
+const CarouselSlide = ({ imgUrl, description, attribution, ...rest }) => {
   return (
     <figure {...rest}>
       <img src={imgUrl} />
@@ -14,9 +14,9 @@ const CarouseSlide = ({ imgUrl, description, attribution, ...rest }) => {
   );
 };
 
-export default CarouseSlide;
+export default CarouselSlide;
 
-CarouseSlide.propTypes = {
+CarouselSlide.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   attribution: PropTypes.string.isRequired,
