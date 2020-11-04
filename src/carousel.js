@@ -13,7 +13,17 @@ class Carousel extends PureComponent {
     };
   }
 
+  static propTypes = {
+    defaultImgHeight: CarouselSlide.propTypes.imgHeight,
+    slides: PropTypes.array.isRequired,
+  };
+
+  static defaultProps = {
+    defaultImgHeight: CarouselSlide.defaultProps.imgHeight,
+  };
+
   handlePrevClick = () => {
+    // console.log(this.defaultProps);
     this.setState((prev) => ({
       slideIndex:
         (prev.slideIndex + this.props.slides.length - 1) %
@@ -28,10 +38,13 @@ class Carousel extends PureComponent {
   };
 
   render() {
-    const { slides, ...rest } = this.props;
+    const { defaultImgHeight, slides, ...rest } = this.props;
     return (
       <div {...rest}>
-        <CarouselSlide {...slides[this.state.slideIndex]} />
+        <CarouselSlide
+          imgHeight={defaultImgHeight}
+          {...slides[this.state.slideIndex]}
+        />
         <CarouselButton data-action="prev" onClick={this.handlePrevClick}>
           Prev
         </CarouselButton>
@@ -45,6 +58,7 @@ class Carousel extends PureComponent {
 
 export default Carousel;
 
-Carousel.propTypes = {
-  slides: PropTypes.array.isRequired,
-};
+// Carousel.propTypes = {
+//   defaultImgHeight: PropTypes.number,
+//   slides: PropTypes.array.isRequired,
+// };
