@@ -3,7 +3,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import CarouselSlide from "../carousel-slide";
+// import renderer from "react-test-renderer";
 import "./jestSetup";
+import "jest-styled-components";
+// import styled from "styled-components";
 
 describe("Img", () => {
   let mounted;
@@ -15,6 +18,11 @@ describe("Img", () => {
   });
   it("renders an <img> with the given src", () => {
     expect(mounted.containsMatchingElement(<img src={imgUrl} />)).toBe(true);
+  });
+
+  it("has the expected static styles", () => {
+    expect(mounted).toHaveStyleRule("width", "100%");
+    expect(mounted).toHaveStyleRule("object-fit", "cover");
   });
 });
 

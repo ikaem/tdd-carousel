@@ -26,7 +26,6 @@ const DefaultImageStyled = styled.img`
   object-fit: cover;
   width: 100%;
   height: ${(props) => {
-    console.log(props);
     return props.imgHeight + "px";
   }};
 `;
