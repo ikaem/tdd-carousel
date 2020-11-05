@@ -5,7 +5,9 @@ import CarouselButton from "./carousel-button";
 import CarouselSlide from "./carousel-slide";
 import PropTypes from "prop-types";
 
-class Carousel extends PureComponent {
+import HasIndex from "./has-index";
+
+export class Carousel extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -17,6 +19,9 @@ class Carousel extends PureComponent {
     defaultImg: CarouselSlide.defaultProps.Img,
     defaultImgHeight: CarouselSlide.propTypes.imgHeight,
     slides: PropTypes.array.isRequired,
+    slideIndex: PropTypes.number.isRequired,
+    slideIndexDecrement: PropTypes.func.isRequired,
+    slideIndexIncrement: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -26,27 +31,40 @@ class Carousel extends PureComponent {
 
   handlePrevClick = () => {
     // console.log(this.defaultProps);
-    this.setState((prev) => ({
-      slideIndex:
-        (prev.slideIndex + this.props.slides.length - 1) %
-        this.props.slides.length,
-    }));
+    // this.setState((prev) => ({
+    //   slideIndex:
+    //     (prev.slideIndex + this.props.slides.length - 1) %
+    //     this.props.slides.length,
+    // }));
+
+    const { slideIndexDecrement, slides } = this.props;
+    slideIndexDecrement(slides.length);
   };
 
   handleNextClick = () => {
-    this.setState((prev) => ({
-      slideIndex: (prev.slideIndex + 1) % this.props.slides.length,
-    }));
+    // this.setState((prev) => ({
+    //   slideIndex: (prev.slideIndex + 1) % this.props.slides.length,
+    // }));
+    const { slideIndexIncrement, slides } = this.props;
+    slideIndexIncrement(slides.length);
   };
 
   render() {
-    const { defaultImg, defaultImgHeight, slides, ...rest } = this.props;
+    const {
+      slideIndex,
+      defaultImg,
+      defaultImgHeight,
+      slides,
+      slideIndexIncrement: _slideIndexIncrement,
+      slideIndexDecrement: _slideIndexDecrement,
+      ...rest
+    } = this.props;
     return (
       <div {...rest}>
         <CarouselSlide
           Img={defaultImg}
           imgHeight={defaultImgHeight}
-          {...slides[this.state.slideIndex]}
+          {...slides[slideIndex]}
         />
         <CarouselButton data-action="prev" onClick={this.handlePrevClick}>
           Prev
@@ -59,7 +77,7 @@ class Carousel extends PureComponent {
   }
 }
 
-export default Carousel;
+export default HasIndex(Carousel, "slideIndex");
 
 // Carousel.propTypes = {
 //   defaultImgHeight: PropTypes.number,

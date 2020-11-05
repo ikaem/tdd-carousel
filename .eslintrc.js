@@ -18,6 +18,7 @@ module.exports = {
   rules: {
     quotes: ["error", "double", { avoidEscape: true }],
     "comma-dangle": ["error", "always-multiline"],
+    "no-unused-vars": ["error", { varsIgnorePattern: "^_" }],
   },
   settings: {
     react: {
