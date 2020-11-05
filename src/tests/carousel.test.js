@@ -35,6 +35,27 @@ describe("Carousel", () => {
   //   wrapper = shallow(<Carousel />);
   // });
 
+  it("passes defautlImgand defaultImgHeight to the CarouselSlide", () => {
+    const defaultImg = () => "test";
+    const defaultImgHeight = 1234;
+
+    wrapper.setProps({ defaultImg, defaultImgHeight });
+    expect(wrapper.find(CarouselSlide).prop("Img")).toBe(defaultImg); // fails
+    expect(wrapper.find(CarouselSlide).prop("imgHeight")).toBe(
+      defaultImgHeight
+    );
+  });
+
+  it("allows individual slides to override Img and img Height", () => {
+    const Img = () => "test";
+    const imgHeight = 1234;
+
+    wrapper.setProps({ slides: [{ ...slides[0], Img, imgHeight }] });
+
+    expect(wrapper.find(CarouselSlide).prop("Img")).toBe(Img);
+    expect(wrapper.find(CarouselSlide).prop("imgHeight")).toBe(imgHeight);
+  });
+
   it("renders the current slide as a CarouselSlide", () => {
     let slideProps;
     slideProps = wrapper.find(CarouselSlide).props();

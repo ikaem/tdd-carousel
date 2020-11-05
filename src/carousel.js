@@ -14,11 +14,13 @@ class Carousel extends PureComponent {
   }
 
   static propTypes = {
+    defaultImg: CarouselSlide.defaultProps.Img,
     defaultImgHeight: CarouselSlide.propTypes.imgHeight,
     slides: PropTypes.array.isRequired,
   };
 
   static defaultProps = {
+    defaultImg: CarouselSlide.defaultProps.Img,
     defaultImgHeight: CarouselSlide.defaultProps.imgHeight,
   };
 
@@ -38,10 +40,11 @@ class Carousel extends PureComponent {
   };
 
   render() {
-    const { defaultImgHeight, slides, ...rest } = this.props;
+    const { defaultImg, defaultImgHeight, slides, ...rest } = this.props;
     return (
       <div {...rest}>
         <CarouselSlide
+          Img={defaultImg}
           imgHeight={defaultImgHeight}
           {...slides[this.state.slideIndex]}
         />
